@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>Tic Tac Toe</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -12,6 +12,35 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1>Browser Template</h1>
+      <section id="auth-section">
+        <form id="sign-up">
+          <input name="credentials[email]" type="text" placeholder="Email" required>
+          <input name="credentials[password]" type="password" placeholder="Password" required>
+          <input name="credentials[password_confirmation]" type="password" placeholder="Password (Confirm)" required>
+          <button>Sign Up</button>
+        </form>
+        <hr>
+        <form id="sign-in">
+          <input name="credentials[email]" type="text" placeholder="Email" required>
+          <input name="credentials[password]" type="password" placeholder="Password" required>
+          <button>Sign In</button>
+        </form>
+        <hr>
+        <form id="change-password">
+          <input type='password' name='passwords[old]' placeholder='Old Password' required>
+          <input type='password' name='passwords[new]' placeholder='New Password' required>
+          <button>Change Password</button>
+        </form>
+        <hr>
+        <form id="sign-out">
+          <button>Sign Out</button>
+        </form>
+        <hr>
+      </section>
+
+      <section>
+        <div id='alert-message'></div>
+      </section>
+
     </body>
 </html>

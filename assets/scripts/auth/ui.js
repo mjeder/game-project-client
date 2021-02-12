@@ -1,22 +1,23 @@
 const store = require('./../store')
 
 const signUpSuccess = function (response) {
-  $('#alert-message').text('Thank you for signing up')
-  $('#sign-up').trigger('reset')
+  $('#sign-in-view').show()
+  $('#sign-up-view').hide()
 }
 
 const signUpFailure = function (response) {
-  $('#alert-message').text('Something went wrong... please try again!')
+  $('#sign-up-fail').text('Hmm.. something went wrong. Please, try again.')
 }
 
 const signInSuccess = function (response) {
   store.user = response.user
-  $('#alert-message').text('Thank you for signing in')
+  $('#welcome-user-view').show()
+  $('#sign-in-view').hide()
   $('#sign-in').trigger('reset')
 }
 
 const signInFailure = function (response) {
-  $('#alert-message').text('Something went wrong... please try again!')
+  $('#sign-in-fail').text('Hmm.. something went wrong. Please, try again.')
 }
 
 const changePasswordSuccess = function (response) {
@@ -25,7 +26,7 @@ const changePasswordSuccess = function (response) {
 }
 
 const changePasswordFailure = function (response) {
-  $('#alert-message').text('Something went wrong... please try again!')
+  $('#change-password-fail').text('Hmm.. something went wrong. Please, try again.')
 }
 
 const signOutSuccess = function () {
@@ -35,7 +36,7 @@ const signOutSuccess = function () {
 }
 
 const signOutFailure = function () {
-  $('#alert-message').text('Failed to sign out... please try again!')
+  $('#sign-out-fail').text('Hmm.. something went wrong. Please, try again.')
 }
 
 module.exports = {

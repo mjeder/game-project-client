@@ -1,6 +1,6 @@
 const store = require('./../store')
 
-const signUpSucess = function (response) {
+const signUpSuccess = function (response) {
   $('#alert-message').text('Thank you for signing up')
   $('#sign-up').trigger('reset')
 }
@@ -39,7 +39,7 @@ const signOutFailure = function () {
 }
 
 module.exports = {
-  signUpSucess,
+  signUpSuccess,
   signUpFailure,
   signInSuccess,
   signInFailure,

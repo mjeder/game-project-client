@@ -1,8 +1,9 @@
 const store = require('./../store')
 
 const signUpSuccess = function (response) {
-  $('#sign-in-view').show()
-  $('#sign-up-view').hide()
+  $('#sign-up-fail').text('SUCCESS!')
+  // $('#sign-in-view').show()
+  // $('#sign-up-view').hide()
 }
 
 const signUpFailure = function (response) {
@@ -11,8 +12,9 @@ const signUpFailure = function (response) {
 
 const signInSuccess = function (response) {
   store.user = response.user
-  $('#welcome-user-view').show()
-  $('#sign-in-view').hide()
+  $('#sign-in-fail').text('SUCCESS!')
+  // $('#welcome-user-view').show()
+  // $('#sign-in-view').hide()
   $('#sign-in').trigger('reset')
 }
 
@@ -21,7 +23,7 @@ const signInFailure = function (response) {
 }
 
 const changePasswordSuccess = function (response) {
-  $('#alert-message').text('Password successfully changed!')
+  $('#change-password-fail').text('SUCCESS!')
   $('#change-password').trigger('reset')
 }
 
@@ -30,7 +32,8 @@ const changePasswordFailure = function (response) {
 }
 
 const signOutSuccess = function () {
-  $('#alert-message').text('Signed out successfully!')
+  $('#sign-out-fail').text('SUCCESS!')
+  // $('#welcome-view').show()
   $('form').trigger('reset')
   store.user = null
 }

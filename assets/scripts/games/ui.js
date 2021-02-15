@@ -25,7 +25,7 @@ const newGameSuccess = function (responseData) {
   $('#board-8').html(boardEight)
 
   $('#play-game-view').show()
-  $('#welcome-user-view').hide()
+  // $('#welcome-user-view').hide()
 }
 
 const newGameFailure = function () {

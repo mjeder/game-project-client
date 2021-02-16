@@ -25,7 +25,7 @@
           <input name='credentials[password_confirmation]' type='password' placeholder='Password (Confirm)' required>
           <button>Sign Up</button>
         </form>
-        <div id='sign-up-fail'></div>
+        <div id='sign-up-alert'></div>
       </section>
 
       <section id='sign-in-view'>
@@ -34,14 +34,14 @@
           <input name='credentials[password]' type='password' placeholder='Password' required>
           <button>Sign In</button>
         </form>
-        <div id='sign-in-fail'></div>
+        <div id='sign-in-alert'></div>
       </section>
 
       <section id='welcome-user-view'>
         <form>
           <button id='new-game-button'>New Game</button>
         </form>
-        <div id='new-game-fail'></div>
+        <div id='new-game-alert'></div>
       </section>
 
       <section id='change-password-view'>
@@ -50,21 +50,21 @@
           <input type='password' name='passwords[new]' placeholder='New Password' required>
           <button>Change Password</button>
         </form>
-        <div id='change-password-fail'></div>
+        <div id='change-password-alert'></div>
       </section>
 
       <section id='play-game-view'>
         <h1>Tic Tac Toe</h1>
         <div class='container'>
-          <div data-cell-index='0' class='cell'>0</div>
-          <div data-cell-index='1' class='cell border-l-r'>1</div>
-          <div data-cell-index='2' class='cell'>2</div>
-          <div data-cell-index='3' class='cell border-t-b'>3</div>
-          <div data-cell-index='4' class='cell border-a'>4</div>
-          <div data-cell-index='5' class='cell border-t-b'>5</div>
-          <div data-cell-index='6' class='cell'>6</div>
-          <div data-cell-index='7' class='cell border-l-r'>7</div>
-          <div data-cell-index='8' class='cell'>8</div>
+          <div data-cell-index='0' class='cell'></div>
+          <div data-cell-index='1' class='cell border-l-r'></div>
+          <div data-cell-index='2' class='cell'></div>
+          <div data-cell-index='3' class='cell border-t-b'></div>
+          <div data-cell-index='4' class='cell border-a'></div>
+          <div data-cell-index='5' class='cell border-t-b'></div>
+          <div data-cell-index='6' class='cell'></div>
+          <div data-cell-index='7' class='cell border-l-r'></div>
+          <div data-cell-index='8' class='cell'></div>
         </div>
       </section>
 

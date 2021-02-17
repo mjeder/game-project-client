@@ -51,6 +51,7 @@
             <form class='form-group'>
               <button id='play-game' type='button' class='btn btn-primary btn-lg mb-5'>Play Game</button>
             </form>
+            <p id='new-game-alert'></p>
           </div>
           <div class='col'>
             <form class='form-group'>
@@ -84,18 +85,22 @@
       </section>
 
       <section id='play-game-view'>
-        <div class='game-board'>
-          <div data-cell-index='0' class='cell'></div>
-          <div data-cell-index='1' class='cell border-l-r'></div>
-          <div data-cell-index='2' class='cell'></div>
-          <div data-cell-index='3' class='cell border-t-b'></div>
-          <div data-cell-index='4' class='cell border-a'></div>
-          <div data-cell-index='5' class='cell border-t-b'></div>
-          <div data-cell-index='6' class='cell'></div>
-          <div data-cell-index='7' class='cell border-l-r'></div>
-          <div data-cell-index='8' class='cell'></div>
+        <div id='game-board'>
+          <div class='container justify-content-center' id='board-spaces'>
+            <div class='space' id='0'></div>
+            <div class='space border-l-r' id='1'></div>
+            <div class='space' id='2'></div>
+            <div class='space border-t-b' id='3'></div>
+            <div class='space border-a' id='4'></div>
+            <div class='space border-t-b' id='5'></div>
+            <div class='space' id='6'></div>
+            <div class='space border-l-r' id='7'></div>
+            <div class='space' id='8'></div>
+          </div>
+          <div id='player-move'></div>
+          <div id='game-over'></div>
+          <div id='game-alert'></div>
         </div>
-        <div id='game-alert'></div>
       </section>
 
       <section id='game-over-view'>

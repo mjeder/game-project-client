@@ -1,6 +1,22 @@
 @import '~bootstrap/scss/bootstrap';
+@import 'variables';
 
-.container {
+html {
+  justify-content: center;
+  margin: 50px;
+}
+
+body {
+  align-items: center;
+  text-align: center;
+  margin: auto;
+}
+
+.credentials {
+  text-align: center;
+}
+
+.game-board {
   display: grid;
   grid-template-columns: repeat(3, auto);
   width: 300px;
@@ -17,19 +33,37 @@
 }
 
 .border-a {
-  border-color: black;
+  border-color: grey;
   border-style: solid;
   border-width: 3px 3px 3px 3px;
 }
 
 .border-t-b {
-  border-color: black;
+  border-color: grey;
   border-style: solid;
   border-width: 3px 0 3px 0;
 }
 
 .border-l-r {
-  border-color: black;
+  border-color: grey;
   border-style: solid;
   border-width: 0 3px 0 3px;
+}
+
+#title {
+  text-align: center;
+  color: $blue-primary-color;
+  margin: 20px;
+  font-size: 75px;
+}
+
+#user-forms {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 50px;
+}
+
+h4, h3 {
+  color: grey;
 }

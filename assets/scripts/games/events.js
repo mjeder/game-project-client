@@ -1,9 +1,11 @@
 const api = require('./api')
 const ui = require('./ui')
 const store = require('./../store')
-
 // const getFormFields = require('../../../lib/get-form-fields')
 
+const addHandlers = function () {
+  $('#play-game').on('click', onNewGame) // PLAY GAME
+}
 const onNewGame = function (event) {
   $('#play-game-view').show()
   const data = '{}'
@@ -13,8 +15,6 @@ const onNewGame = function (event) {
 }
 
 module.exports = {
+  addHandlers,
   onNewGame
 }
-
-// store.startPlayer = 'X'
-// store.cells = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']

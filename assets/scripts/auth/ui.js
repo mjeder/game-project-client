@@ -11,7 +11,8 @@ const signUpFailure = function (response) {
 
 const signInSuccess = function (response) {
   store.user = response.user
-  $('#sign-in-alert').text('Welcome!')
+  $('#user-welcome-view').show()
+  $('#user-forms-view').hide()
   $('#sign-in').trigger('reset')
 }
 
@@ -21,7 +22,7 @@ const signInFailure = function (response) {
 
 const changePasswordSuccess = function (response) {
   $('#change-password-alert').text('Password successfully changed!')
-  $('#change-password').trigger('reset')
+  $('#change-password-view').hide()
 }
 
 const changePasswordFailure = function (response) {
@@ -30,7 +31,9 @@ const changePasswordFailure = function (response) {
 
 const signOutSuccess = function () {
   $('#sign-out-alert').text('Successfully signed out!')
-  // $('#welcome-view').show()
+  $('#game-over-view').hide()
+  $('#user-welcome-view').hide()
+  $('#user-forms-view').show()
   $('form').trigger('reset')
   store.user = null
 }

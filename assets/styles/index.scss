@@ -33,19 +33,19 @@ body {
 }
 
 .border-a {
-  border-color: black;
+  border-color: grey;
   border-style: solid;
   border-width: 3px 3px 3px 3px;
 }
 
 .border-t-b {
-  border-color: black;
+  border-color: grey;
   border-style: solid;
   border-width: 3px 0 3px 0;
 }
 
 .border-l-r {
-  border-color: black;
+  border-color: grey;
   border-style: solid;
   border-width: 0 3px 0 3px;
 }
@@ -53,6 +53,8 @@ body {
 #title {
   text-align: center;
   color: $blue-primary-color;
+  margin: 20px;
+  font-size: 75px;
 }
 
 #user-forms {
@@ -60,4 +62,8 @@ body {
   align-items: center;
   flex-direction: column;
   margin: 50px;
+}
+
+h4, h3 {
+  color: grey;
 }

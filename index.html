@@ -13,10 +13,10 @@
     </head>
     <body>
       <section id='welcome'>
-        <h1 id='title'>Welcome to Tic Tac Toe!</h1>
+        <h1 id='title'>Tic Tac Toe!</h1>
       </section>
 
-      <section id='user-forms'>
+      <section id='user-forms-view'>
         <div class='containter'>
           <div class='col'>
             <form class='form-group' id='sign-up'>
@@ -36,26 +36,51 @@
                 <input class='col-6 mb-2 credentials' name='credentials[password]' type='password' placeholder='Password' required>
                 <button type='submit' class='col-6 mb-2 btn btn-secondary btn-lg'>Sign In</button>
                 <p id='sign-in-alert'></p>
+                <p id='sign-out-alert'></p>
               </fieldset>
             </form>
           </div>
         </div>
       </section>
 
-      <section id='welcome-user-view'>
-        <form>
-          <button id='play-game' type='button' class='btn btn-primary btn-sm'>Play Game</button>
-        </form>
-        <div id='play-game-alert'></div>
+      <section id='user-welcome-view'>
+        <h3>Successfully signed in!</h3>
+        <h5>Choose an option below...</h5>
+        <div class='containter'>
+          <div class='col'>
+            <form class='form-group'>
+              <button id='play-game' type='button' class='btn btn-primary btn-lg mb-5'>Play Game</button>
+            </form>
+          </div>
+          <div class='col'>
+            <form class='form-group'>
+              <button id='view-games' type='button' class='btn btn-secondary btn-md'>Total Games Played</button>
+            </form>
+          </div>
+          <div class='col'>
+            <form class='form-group'>
+              <button id='change-password-button' type='button' class='btn btn-secondary btn-md'>Change Password</button>
+            </form>
+            <p id='change-password-alert'></p>
+          </div>
+          <div class='col'>
+            <form class='form-group'>
+              <button type='button' class='btn btn-secondary btn-md sign-out-button'>Sign Out</button>
+            </form>
+          </div>
+        </div>
       </section>
 
       <section id='change-password-view'>
-        <form id='change-password'>
-          <input type='password' name='passwords[old]' placeholder='Old Password' required>
-          <input type='password' name='passwords[new]' placeholder='New Password' required>
-          <button type='button' class='btn btn-secondary btn-sm'>Change Password</button>
-        </form>
-        <div id='change-password-alert'></div>
+        <div class='col'>
+          <form class='form-group' id='change-password'>
+            <fieldset>
+              <input class='col-6 mb-2 credentials' name='passwords[old]' type='password' placeholder='Old Password' required>
+              <input class='col-6 mb-2 credentials' name='passwords[new]' type='password' placeholder='New Password' required>
+              <button type='submit' class='col-6 mb-2 btn btn-secondary btn-lg'>Change Password</button>
+            </fieldset>
+          </form>
+        </div>
       </section>
 
       <section id='play-game-view'>
@@ -70,16 +95,20 @@
           <div data-cell-index='7' class='cell border-l-r'></div>
           <div data-cell-index='8' class='cell'></div>
         </div>
-        <div id='player-turn'></div>
+        <div id='game-alert'></div>
       </section>
 
       <section id='game-over-view'>
-        <form id='play-again-button'>
-          <button type='button' class='btn btn-primary btn-sm'>Play Again</button>
-        </form>
-        <form id='sign-out'>
-          <button type='button' class='btn btn-secondary btn-sm'>Sign Out</button>
-        </form>
+        <div class='col'>
+          <form class='form-group'>
+            <button id='play-again-button' type='button' class='btn btn-primary btn-lg mb-2'>Play Again!</button>
+          </form>
+        </div>
+        <div class='col'>
+          <form class='form-group'>
+            <button type='button' class='btn btn-secondary btn-md sign-out-button'>Sign Out</button>
+          </form>
+        </div>
       </section>
 
     </body>

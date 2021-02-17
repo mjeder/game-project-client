@@ -18,6 +18,7 @@ const signInSuccess = function (response) {
 
 const signInFailure = function (response) {
   $('#sign-in-alert').text('Hmm.. something went wrong. Please, try again.')
+  $('#sign-in').trigger('reset')
 }
 
 const changePasswordSuccess = function (response) {
@@ -33,6 +34,7 @@ const signOutSuccess = function () {
   $('#sign-out-alert').text('Successfully signed out!')
   $('#game-over-view').hide()
   $('#user-welcome-view').hide()
+  $('#play-game-view').hide()
   $('#user-forms-view').show()
   $('form').trigger('reset')
   store.user = null

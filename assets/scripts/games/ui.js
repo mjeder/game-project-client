@@ -1,7 +1,9 @@
 const store = require('./../store')
 
-const newGameSuccess = function () {
-  $('#play-game-view').show()
+const newGameSuccess = function (response) {
+  store.game = response.game
+  $('cell').html('')
+  $('player-alert').text('Player X is currently up!')
 }
 
 const newGameFailure = function () {

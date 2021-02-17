@@ -3,32 +3,13 @@ const authEvents = require('./auth/events')
 const gameEvents = require('./games/events')
 
 $(() => {
-  // ALL VIEWS FOR COPY AND PASTE
-  $('#welcome-view').hide()
-  // $('#sign-up-view').hide()
-  // $('#sign-in-view').hide()
-  // $('#welcome-user-view').hide()
-  // $('#change-password-view').hide()
-  $('#play-game-view').hide()
-  // $('#game-over-view').hide()
+  $('#sign-up').on('submit', authEvents.onSignUp) // SIGN UP
 
-  // IF sign up form is completed and submitted...
-  // SIGN UP
-  $('#sign-up').on('submit', authEvents.onSignUp)
+  $('#sign-in').on('submit', authEvents.onSignIn) // SIGN IN
 
-  // IF sign in form is completed and submitted...
-  // SIGN IN
-  $('#sign-in').on('submit', authEvents.onSignIn)
+  $('#change-password').on('submit', authEvents.onChangePassword) // CHANGE PASSWORD
 
-  // IF change password form is completed and submitted...
-  // CHANGE PASSWORD
-  $('#change-password').on('submit', authEvents.onChangePassword)
+  $('#sign-out').on('click', authEvents.onSignOut) // SIGN OUT
 
-  // IF sign out button is clicked...
-  // SIGN OUT
-  $('#sign-out-button').on('click', authEvents.onSignOut)
-
-  // IF new game button is clicked...
-  // NEW GAME
-  $('#new-game-button').on('click', gameEvents.onNewGame)
+  $('#play-game').on('click', gameEvents.onNewGame) // PLAY GAME
 })

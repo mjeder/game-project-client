@@ -2,60 +2,64 @@
 <html>
     <head>
       <title>Tic Tac Toe</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name='viewport' content='width=device-width, initial-scale=1'>
 
       <!-- Do not add `link` tags-->
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+      <link rel='shortcut icon' type='image/x-icon' href='favicon.ico'>
 
       <!-- Do not add `script` tags-->
-      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src='public/vendor.js' type='text/javascript' charset='utf-8' defer></script>
+      <script src='public/application.js' type='text/javascript' charset='utf-8' defer></script>
     </head>
     <body>
-      <section id='welcome-view'>
-        <h1>Tic Tac Toe</h1>
-        <button id='welcome-sign-in-button' type='button' class='btn btn-primary btn-lg'>Sign In</button>
-        <button id='welcome-sign-up-button' type='button' class='btn btn-secondary btn-lg'>Sign Up</button>
+      <section id='welcome'>
+        <h1 id='title'>Welcome to Tic Tac Toe!</h1>
       </section>
 
-      <section id='sign-up-view'>
-        <form id='sign-up'>
-          <input name='credentials[email]' type='text' placeholder='Email' required>
-          <input name='credentials[password]' type='password' placeholder='Password' required>
-          <input name='credentials[password_confirmation]' type='password' placeholder='Password (Confirm)' required>
-          <button>Sign Up</button>
-        </form>
-        <div id='sign-up-alert'></div>
-      </section>
-
-      <section id='sign-in-view'>
-        <form id='sign-in'>
-          <input name='credentials[email]' type='text' placeholder='Email' required>
-          <input name='credentials[password]' type='password' placeholder='Password' required>
-          <button>Sign In</button>
-        </form>
-        <div id='sign-in-alert'></div>
+      <section id='user-forms'>
+        <div class='containter'>
+          <div class='col'>
+            <form class='form-group' id='sign-up'>
+              <fieldset>
+                <input class='col-6 mb-2 credentials' name='credentials[email]' type='email' placeholder='Email' required>
+                <input class='col-6 mb-2 credentials' name='credentials[password]' type='password' placeholder='Password' required>
+                <input class='col-6 mb-2 credentials' name='credentials[password_confirmation]' type='password' placeholder='Password Confirmation' required>
+                <button type='submit' class='col-6 mb-2 btn btn-primary btn-lg'>Sign Up</button>
+                <p id='sign-up-alert'></p>
+              </fieldset>
+            </form>
+          </div>
+          <div class='col'>
+            <form class='form-group' id='sign-in'>
+              <fieldset>
+                <input class='col-6 mb-2 credentials' name='credentials[email]' type='email' placeholder='Email' required>
+                <input class='col-6 mb-2 credentials' name='credentials[password]' type='password' placeholder='Password' required>
+                <button type='submit' class='col-6 mb-2 btn btn-secondary btn-lg'>Sign In</button>
+                <p id='sign-in-alert'></p>
+              </fieldset>
+            </form>
+          </div>
+        </div>
       </section>
 
       <section id='welcome-user-view'>
         <form>
-          <button id='new-game-button'>New Game</button>
+          <button id='play-game' type='button' class='btn btn-primary btn-sm'>Play Game</button>
         </form>
-        <div id='new-game-alert'></div>
+        <div id='play-game-alert'></div>
       </section>
 
       <section id='change-password-view'>
         <form id='change-password'>
           <input type='password' name='passwords[old]' placeholder='Old Password' required>
           <input type='password' name='passwords[new]' placeholder='New Password' required>
-          <button>Change Password</button>
+          <button type='button' class='btn btn-secondary btn-sm'>Change Password</button>
         </form>
         <div id='change-password-alert'></div>
       </section>
 
       <section id='play-game-view'>
-        <h1>Tic Tac Toe</h1>
-        <div class='container'>
+        <div class='game-board'>
           <div data-cell-index='0' class='cell'></div>
           <div data-cell-index='1' class='cell border-l-r'></div>
           <div data-cell-index='2' class='cell'></div>
@@ -66,11 +70,15 @@
           <div data-cell-index='7' class='cell border-l-r'></div>
           <div data-cell-index='8' class='cell'></div>
         </div>
+        <div id='player-turn'></div>
       </section>
 
       <section id='game-over-view'>
-        <form id='sign-out-button'>
-          <button>Sign Out</button>
+        <form id='play-again-button'>
+          <button type='button' class='btn btn-primary btn-sm'>Play Again</button>
+        </form>
+        <form id='sign-out'>
+          <button type='button' class='btn btn-secondary btn-sm'>Sign Out</button>
         </form>
       </section>
 

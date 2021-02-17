@@ -1,9 +1,8 @@
 const store = require('./../store')
 
 const signUpSuccess = function (response) {
-  $('#sign-up-alert').text('SUCCESS!')
-  // $('#sign-in-view').show()
-  // $('#sign-up-view').hide()
+  $('#sign-up-alert').text('Account created! Please sign in below!')
+  $('#sign-up').trigger('reset')
 }
 
 const signUpFailure = function (response) {
@@ -12,9 +11,7 @@ const signUpFailure = function (response) {
 
 const signInSuccess = function (response) {
   store.user = response.user
-  $('#sign-in-alert').text('SUCCESS!')
-  // $('#welcome-user-view').show()
-  // $('#sign-in-view').hide()
+  $('#sign-in-alert').text('Welcome!')
   $('#sign-in').trigger('reset')
 }
 
@@ -23,7 +20,7 @@ const signInFailure = function (response) {
 }
 
 const changePasswordSuccess = function (response) {
-  $('#change-password-alert').text('SUCCESS!')
+  $('#change-password-alert').text('Password successfully changed!')
   $('#change-password').trigger('reset')
 }
 
@@ -32,7 +29,7 @@ const changePasswordFailure = function (response) {
 }
 
 const signOutSuccess = function () {
-  $('#sign-out-alert').text('SUCCESS!')
+  $('#sign-out-alert').text('Successfully signed out!')
   // $('#welcome-view').show()
   $('form').trigger('reset')
   store.user = null

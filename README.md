@@ -1,31 +1,87 @@
-## Application Title: A Description
-This application allows the user to do x, y, and z. Maybe here's a reason why I wanted to do this project, or came up with this idea.
+## Matt's Game of Tic Tac Toe
+This is my first project at General Assembly and the goal was to create a Tic
+Tac Toe web application that is hosted live on GH-Pages. The main objectives
+were to:
+- Separate HTML, CSS, and JavaScript files in your application
+- Build an application to a spec that someone else gives you
+- Use your programming skills to solve the game logic for a game
+- Code an interactive game that allows a user to play tic tac toe against themself
+- Communicate with a back-end (which we'll provide for you) to store the state of your game.
+- Craft a README.md file that explains your app to the world
 
 ### Important Links
-Other Repo
-Deployed API
-Deployed Client
+[API](https://git.generalassemb.ly/ga-wdi-boston/game-project-api)
+[Deployed Client]()
 
 ### Planning Story
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id ornare magna. Curabitur leo arcu, elementum in posuere vitae, rutrum eu urna. Quisque tincidunt nulla sed mi cursus, nec tristique est fermentum. Etiam lacinia id neque ut egestas. Sed consequat convallis felis nec posuere. Sed non eros sed velit viverra tincidunt. Etiam et tortor sit amet lacus volutpat dignissim. Vestibulum convallis, felis a posuere pretium, turpis enim sollicitudin neque, pretium finibus leo metus sed sapien. Praesent iaculis pharetra nunc ac rhoncus. Duis eu risus in est porttitor egestas sit amet eget metus. Maecenas iaculis auctor ullamcorper. Donec pretium dolor non nisl egestas bibendum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ullamcorper pulvinar orci interdum mattis. Ut gravida volutpat mauris, a semper risus maximus ut.
+I started off by writing down as many user stories I could think of which then
+gave me the inspiration to start drawing out my wireframe. This led me to having
+a solid idea of how I wanted to sketch out my HTML and JS files.
+
+Once I built out my foundatation I ran through the the following checklist:
+
+**Application**
+- User must be able to sign up
+- User must be able to sign in
+- Signed in user must be able to change password
+- Signed in user must be able to sign out
+- Signed in user user must be able to start a tic tac toe game
+- When playing game, user must start as X and then rotate between X and O
+- When playing game, user must only select available spaces on the board
+- When playing game, user must be notified when win, loss or tie occurs
+- Once a game is over, user must not be able to add to that board
+- Once a game is over, user must be able to play again
+- Signed in user must be able to view number of games played
+
+**API**
+- Sign up POST /sign-up
+- Sign in POST /sign-in
+- Change password PATCH /change-password
+- Sign out DELETE /sign-out
+- New game POST /games
+- Update game PATCH /games/:id
+- View number of games played GET /games
+- Give feedback to the user after each action's success or failure.
+- All forms must clear after submit success
+
 
 ### User Stories
-As a user I want to sign in/up
-As a user I want to Create a new < resource >
-As a user I want to Read multiple < resources >
-As a user I want to Read a single < resource >
-As a user I want to Update a < resource > I own
-As a user I want to Delete a < resource > I own
+- as a user, I want a sign up form so that I can create an account.
+- as a user, I want a sign in form so that I can log into my account.
+- as a user, I want a change password form so that I can change my account
+password.
+- as a user, I want a play game button so that I can start a game of tic tac
+toe.
+- as a user, I want to be able to click directly on the board so that I can
+choose where I want to place my game piece.
+- as a user, I want a results screen so that I can know the final outcome of
+the game.
+- as a user, I want a play again button so that I can play as many games as I
+would like.
+- as a user, I want a view all games button so that I can view my playing
+history.
+- as a user, I want a sign out button so that I can close out my account.
+- as a user, I want a flexible design so that I can play on my lap top, tablet,
+or phone.
 
 ### Technologies Used
 jQuery
 HTML/CSS
 Bootstrap
 Javascript
+Ajax
 
 ### Unsolved Problems
-Still need to ....
-Would like to eventually ....
+Still need to:
+- Block a user from selecting a space that is already occupied
+- Input a `play again` function after a game is completed
+- Input a `see all games` function to see total games user has played
+- When signing out, clear everything so another user can log in without
+refeshing the page
 
-### Images
+Would like to eventually:
+- Add a theme to the game
+- Add AI so a user can play against the computer at different skill levels
+
 ##### Wireframe:
+[Wireframe Link](https://wireframepro.mockflow.com/view/tictactoe-wireframe-eder#/page/56232057d2ca4ded9e253877b5304c5d)

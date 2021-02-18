@@ -2,14 +2,21 @@
 
 const api = require('./api')
 const ui = require('./ui')
+// const store = require('../store')
 
-// Set variables for game logic
+const addHandlers = function () {
+  $('#play-game').on('click', newGame) // OPEN NEW GAME BOARD
+  $('#board-spaces').on('click', playGame) // PLAY GAME!
+  // index games
+}
+
+// VARIABLES FOR GAME LOGIC
 let player = true
 let gameOver = false
 let board = ['', '', '', '', '', '', '', '', '']
 let moves = 0
 
-// Create a new game board when above handler is activated
+// CREATE NEW GAME BOARD
 const newGame = function (event) {
   event.preventDefault()
   api.createGame()
@@ -22,17 +29,73 @@ const newGame = function (event) {
   moves = 0
 }
 
-// Update game board as user plays game
-const updateGame = function (index, player, over) {
-  event.preventDefault()
-  api.updateGame(index, player, over)
-    .then(response => {
-      ui.updateGameSuccess(response, index, player)
-    })
-    .catch(ui.updateGameFailure)
+// GAME LOGIC
+const playGame = function (event) {
+  const space = event.target
+  let spaceValue
+
+  // Check if space is empty
+  // If it is... start with player X (true)
+  if ($(event.target).text() === '') {
+    if (player === true) {
+      spaceValue = 'X'
+      board[space.id] = 'X'
+      $('#player-move').text('Player O is currently up! Select any open space!')
+      if (checkWinner() === true) {
+        $('#board-spaces').css('pointer-events', 'none')
+        $('#game-over').show().text('Game Over!')
+        $('#game-alert').show().text('Player X is the winner!')
+        $('#player-move').hide()
+        $('#game-over-view').show()
+        gameOver = !gameOver
+      }
+    // After player X makes their move... switch to player O (false)
+    } else {
+      spaceValue = 'O'
+      board[space.id] = 'O'
+      $('#player-move').text('Player X is currently up! Select any open space!')
+      if (checkWinner() === true) {
+        $('#board-spaces').css('pointer-events', 'none')
+        $('#game-over').show().text('Game Over!')
+        $('#game-alert').show().text('Player O is the winner!')
+        $('#player-move').hide()
+        $('#game-over-view').show()
+        gameOver = !gameOver
+      }
+    }
+    // IF space is occupied return alert message
+  } else {
+    $('#game-alert').text('Please pick a space that is unoccupied!')
+    setTimeout(() => {
+      $('#game-alert').text('')
+    }, 2000)
+  }
+  // Rotate between players AND update game
+  player = !player
+
+  // Check to see if game is over
+  if (gameOver === true) {
+    $('#game-over').show().text('Game Over!')
+    $('#board-spaces').css('pointer-events', 'none')
+  }
+
+  // Check to make sure there isnt a draw
+  // First, count total moves made so far
+  moves++
+  // Next, check if total moves equal 9 (full board) AND there is no winner
+  if (moves === 9 && checkWinner() === false) {
+    $('#game-over').show().text('Game Over!')
+    $('#game-alert').show().text('It\'s a Draw!')
+    $('#board-spaces').css('pointer-events', 'none')
+    $('#player-move').hide()
+    $('#game-over-view').show()
+  }
+
+  // Update game
+  updateGame(space.id, spaceValue, gameOver)
 }
 
-// As user plays game and board updates, check to see if there is a winner
+// WINNING COMBOS
 const checkWinner = function () {
   // Make sure first cell isnt empty, then check if first cell is equal to
   // second cell, then check if second cell is equal to third cell.
@@ -57,69 +120,14 @@ const checkWinner = function () {
   return false
 }
 
-// User plays game
-const playGame = function (event) {
-  const space = event.target
-  let spaceValue
-
-  // FIRST... Check to see if game is over
-  if (gameOver === true) {
-    $('#game-over').show().text('Game Over!')
-  }
-
-  // NEXT... Check to make sure the cell is empty
-  if (board[space.id] !== '') {
-    $('#game-alert').text('Please pick a space that is unoccupied!')
-  }
-
-  // NEXT... Check to make sure there isnt a draw
-  // First, count total moves made so far
-  moves++
-  // Next, check if total moves equal 9 (full board) AND there is no winner
-  if (moves === 9 && checkWinner() === false) {
-    $('#game-over').show().text('Game Over!')
-    $('#game-alert').show().text('Draw!')
-    $('#player-move').hide()
-    $('#game-over-view').show()
-  }
-  // NEXT... alternate between players until there is a winner or a draw is
-  // triggered above
-
-  // If user X makes a move then check to see if that was a winning move and
-  // if it isnt then tell player O to make their move
-  if (player === true) {
-    spaceValue = 'X'
-    board[space.id] = 'X'
-    $('#player-move').text('Player O is currently up! Select any open space!')
-    if (checkWinner() === true) {
-      $('#game-over').show().text('Game Over!')
-      $('#game-alert').show().text('Player X is the winner!')
-      $('#player-move').hide()
-      $('#game-over-view').show()
-      gameOver = !gameOver
-    }
-    // If user O makes a move then check to see if that was a winning move and
-    // if it isnt then tell player X to make their move
-  } else {
-    spaceValue = 'O'
-    board[space.id] = 'O'
-    $('#player-move').text('Player X is currently up! Select any open space!')
-    if (checkWinner() === true) {
-      $('#game-alert').show().text('Player O is the winner!')
-      $('#player-move').hide()
-      $('#game-over-view').show()
-      gameOver = !gameOver
-    }
-  }
-  // Rotate between players AND update game
-  player = !player
-
-  updateGame(space.id, spaceValue, gameOver)
-}
-
-const addHandlers = function () {
-  $('#board-spaces').on('click', playGame) // Play game!
-  $('#play-game').on('click', newGame) // Open new game board
+// UPDATE GAME BOARD
+const updateGame = function (index, player, over) {
+  event.preventDefault()
+  api.updateGame(index, player, over)
+    .then(response => {
+      ui.updateGameSuccess(response, index, player)
+    })
+    .catch(ui.updateGameFailure)
 }
 
 module.exports = {

@@ -23,7 +23,7 @@ const updateGameSuccess = function (response, index, player) {
 }
 
 const updateGameFailure = function () {
-  $('#game-alert').text('update went wrong... please try again!')
+  $('#game-alert').text('Something went wrong... please try again!')
 }
 
 module.exports = {

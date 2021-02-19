@@ -11,7 +11,8 @@ were to:
 
 ### Important Links
 [API](https://git.generalassemb.ly/ga-wdi-boston/game-project-api)
-[Deployed Client]()
+
+[Deployed Client](https://mjeder.github.io/game-project-client/)
 
 ### Planning Story
 I started off by writing down as many user stories I could think of which then
@@ -65,11 +66,11 @@ history.
 or phone.
 
 ### Technologies Used
-jQuery
-HTML/CSS
-Bootstrap
-Javascript
-Ajax
+- jQuery
+- HTML/CSS
+- Bootstrap
+- Javascript
+- Ajax
 
 ### Unsolved Problems
 Still need to:

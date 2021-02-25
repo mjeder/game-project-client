@@ -26,9 +26,15 @@ const updateGameFailure = function () {
   $('#game-alert').text('Something went wrong... please try again!')
 }
 
+const playAgainSuccess
+
+const playAgainFailure
+
 module.exports = {
   createGameSuccess,
   createGameFailure,
   updateGameSuccess,
-  updateGameFailure
+  updateGameFailure,
+  playAgainSuccess,
+  playAgainFailure
 }

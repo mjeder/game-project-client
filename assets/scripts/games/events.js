@@ -2,12 +2,61 @@
 
 const api = require('./api')
 const ui = require('./ui')
-// const store = require('../store')
+const store = require('../store')
 
 const addHandlers = function () {
-  $('#play-game').on('click', newGame) // OPEN NEW GAME BOARD
-  $('#board-spaces').on('click', playGame) // PLAY GAME!
-  // index games
+  // OPEN NEW GAME BOARD
+  $('#play-game').on('click', newGame)
+  // PLAY GAME!
+  $('#board-spaces').on('click', playGame)
+}
+
+// creating a new game and playing again
+const onCreateGame = function () {
+  if (store.over === true) {
+    store.startPlayer = 'X'
+    store.cells = ['', '', '', '', '', '', '', '', '']
+    const space = $('.space')
+    space.html(space.html().replace('X', ''))
+    space.html(space.html().replace('0', ''))
+    api.createGame()
+      .then(ui.playAgainSuccess)
+      .catch(ui.playAgainFailure)
+  } else {
+    store.startPlayer = 'X'
+    store.cells = ['', '', '', '', '', '', '', '', '']
+    const space = $('.space')
+    space.html(space.html().replace('X', ''))
+    space.html(space.html().replace('0', ''))
+    api.createGame()
+      .then(ui.createGameSuccess)
+      .catch(ui.createGameFailure)
+  }
+}
+
+// check for a winner
+// 1. make sure space has an X or O (if empty return false)
+// 2. check if next space has the same value as first space (if not, return false)
+// 3. check if next space has the same value as the first and second spaces (if not, return false)
+const checkWinner = function () {
+  if (store.cells[0] !== '' && store.cells[0] === store.cells[1] && store.cells[1] === store.cells[2]) {
+    return true
+  } else if (store.cells[3] !== '' && store.cells[3] === store.cells[4] && store.cells[4] === store.cells[5]) {
+    return true
+  } else if (store.cells[6] !== '' && store.cells[6] === store.cells[7] && store.cells[7] === store.cells[8]) {
+    return true
+  } else if (store.cells[0] !== '' && store.cells[0] === store.cells[3] && store.cells[3] === store.cells[6]) {
+    return true
+  } else if (store.cells[1] !== '' && store.cells[1] === store.cells[4] && store.cells[4] === store.cells[7]) {
+    return true
+  } else if (store.cells[2] !== '' && store.cells[2] === store.cells[5] && store.cells[5] === store.cells[8]) {
+    return true
+  } else if (store.cells[0] !== '' && store.cells[0] === store.cells[4] && store.cells[4] === store.cells[8]) {
+    return true
+  } else if (store.cells[2] !== '' && store.cells[2] === store.cells[4] && store.cells[6]) {
+    return true
+  }
+  return false
 }
 
 // VARIABLES FOR GAME LOGIC
@@ -93,31 +142,6 @@ const playGame = function (event) {
 
   // Update game
   updateGame(space.id, spaceValue, gameOver)
-}
-
-// WINNING COMBOS
-const checkWinner = function () {
-  // Make sure first cell isnt empty, then check if first cell is equal to
-  // second cell, then check if second cell is equal to third cell.
-  // CHECK THIS FOR ALL WINNINGS COMBOS
-  if (board[0] !== '' && board[0] === board[1] && board[1] === board[2]) {
-    return true
-  } else if (board[3] !== '' && board[3] === board[4] && board[4] === board[5]) {
-    return true
-  } else if (board[6] !== '' && board[6] === board[7] && board[7] === board[8]) {
-    return true
-  } else if (board[0] !== '' && board[0] === board[3] && board[3] === board[6]) {
-    return true
-  } else if (board[1] !== '' && board[1] === board[4] && board[4] === board[7]) {
-    return true
-  } else if (board[2] !== '' && board[2] === board[5] && board[5] === board[8]) {
-    return true
-  } else if (board[0] !== '' && board[0] === board[4] && board[4] === board[8]) {
-    return true
-  } else if (board[2] !== '' && board[2] === board[4] && board[4] === board[6]) {
-    return true
-  }
-  return false
 }
 
 // UPDATE GAME BOARD

@@ -51,6 +51,7 @@ const changePasswordFailure = function (response) {
 const signOutSuccess = function () {
   store.user = null
   store.game = null
+  store.over = true
   $('form').trigger('reset')
   $('#play-game-view').hide()
   $('#user-welcome-view').hide()

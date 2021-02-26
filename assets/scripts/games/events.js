@@ -5,14 +5,13 @@ const ui = require('./ui')
 const store = require('../store')
 
 const addHandlers = function () {
-  // OPEN NEW GAME BOARD
-  $('#play-game').on('click', newGame)
-  // PLAY GAME!
-  $('#board-spaces').on('click', playGame)
+  $('#play-game').on('click', createGame) // OPEN NEW GAME BOARD
+  $('#board-spaces').on('click', playGame) // PLAY GAME!
+  $('#view-games').on('click', showTotalGames) // SHOW TOTAL GAMES!
 }
 
 // creating a new game and playing again
-const onCreateGame = function () {
+const createGame = function () {
   if (store.over === true) {
     store.startPlayer = 'X'
     store.cells = ['', '', '', '', '', '', '', '', '']
@@ -38,124 +37,65 @@ const onCreateGame = function () {
 // 1. make sure space has an X or O (if empty return false)
 // 2. check if next space has the same value as first space (if not, return false)
 // 3. check if next space has the same value as the first and second spaces (if not, return false)
-const checkWinner = function () {
-  if (store.cells[0] !== '' && store.cells[0] === store.cells[1] && store.cells[1] === store.cells[2]) {
+const checkForWinner = function () {
+  if ((store.cells[0] !== '' && store.cells[0] === store.cells[1] && store.cells[1] === store.cells[2]) ||
+  (store.cells[3] !== '' && store.cells[3] === store.cells[4] && store.cells[4] === store.cells[5]) ||
+  (store.cells[6] !== '' && store.cells[6] === store.cells[7] && store.cells[7] === store.cells[8]) ||
+  (store.cells[0] !== '' && store.cells[0] === store.cells[3] && store.cells[3] === store.cells[6]) ||
+  (store.cells[1] !== '' && store.cells[1] === store.cells[4] && store.cells[4] === store.cells[7]) ||
+  (store.cells[2] !== '' && store.cells[2] === store.cells[5] && store.cells[5] === store.cells[8]) ||
+  (store.cells[0] !== '' && store.cells[0] === store.cells[4] && store.cells[4] === store.cells[8]) ||
+  (store.cells[2] !== '' && store.cells[2] === store.cells[4] && store.cells[6])) {
+    ui.winnerGameOver()
     return true
-  } else if (store.cells[3] !== '' && store.cells[3] === store.cells[4] && store.cells[4] === store.cells[5]) {
-    return true
-  } else if (store.cells[6] !== '' && store.cells[6] === store.cells[7] && store.cells[7] === store.cells[8]) {
-    return true
-  } else if (store.cells[0] !== '' && store.cells[0] === store.cells[3] && store.cells[3] === store.cells[6]) {
-    return true
-  } else if (store.cells[1] !== '' && store.cells[1] === store.cells[4] && store.cells[4] === store.cells[7]) {
-    return true
-  } else if (store.cells[2] !== '' && store.cells[2] === store.cells[5] && store.cells[5] === store.cells[8]) {
-    return true
-  } else if (store.cells[0] !== '' && store.cells[0] === store.cells[4] && store.cells[4] === store.cells[8]) {
-    return true
-  } else if (store.cells[2] !== '' && store.cells[2] === store.cells[4] && store.cells[6]) {
+  } else if (checkForDraw()) {
     return true
   }
   return false
 }
 
-// VARIABLES FOR GAME LOGIC
-let player = true
-let gameOver = false
-let board = ['', '', '', '', '', '', '', '', '']
-let moves = 0
-
-// CREATE NEW GAME BOARD
-const newGame = function (event) {
-  event.preventDefault()
-  api.createGame()
-    .then(ui.createGameSuccess)
-    .catch(ui.createGameFailure)
-
-  player = true
-  board = ['', '', '', '', '', '', '', '', '']
-  gameOver = false
-  moves = 0
+// check for a draw
+const checkForDraw = function () {
+  if ((store.cells[0] === 'X' || store.cells[0] === 'O') && (store.cells[1] === 'X' || store.cells[1] === 'O') &&
+  (store.cells[2] === 'X' || store.cells[2] === 'O') && (store.cells[3] === 'X' || store.cells[3] === 'O') &&
+  (store.cells[4] === 'X' || store.cells[4] === 'O') && (store.cells[5] === 'X' || store.cells[5] === 'O') &&
+  (store.cells[6] === 'X' || store.cells[6] === 'O') && (store.cells[7] === 'X' || store.cells[7] === 'O') &&
+  (store.cells[8] === 'X' || store.cells[8] === 'O')) {
+    ui.drawGameOver()
+    return true
+  }
+  return false
 }
 
-// GAME LOGIC
+// play the game
+// make sure the selected space is unoccupied
+// if unoccupied, insert X or O and update game.
 const playGame = function (event) {
-  const space = event.target
-  let spaceValue
-
-  // Check if space is empty
-  // If it is... start with player X (true)
-  if ($(event.target).text() === '') {
-    if (player === true) {
-      spaceValue = 'X'
-      board[space.id] = 'X'
-      $('#player-move').text('Player O is currently up! Select any open space!')
-      if (checkWinner() === true) {
-        $('#board-spaces').css('pointer-events', 'none')
-        $('#game-over').show().text('Game Over!')
-        $('#game-alert').show().text('Player X is the winner!')
-        $('#player-move').hide()
-        $('#game-over-view').show()
-        gameOver = !gameOver
-      }
-    // After player X makes their move... switch to player O (false)
-    } else {
-      spaceValue = 'O'
-      board[space.id] = 'O'
-      $('#player-move').text('Player X is currently up! Select any open space!')
-      if (checkWinner() === true) {
-        $('#board-spaces').css('pointer-events', 'none')
-        $('#game-over').show().text('Game Over!')
-        $('#game-alert').show().text('Player O is the winner!')
-        $('#player-move').hide()
-        $('#game-over-view').show()
-        gameOver = !gameOver
-      }
-    }
-    // IF space is occupied return alert message
-  } else {
-    $('#game-alert').text('Please pick a space that is unoccupied!')
-    setTimeout(() => {
-      $('#game-alert').text('')
-    }, 2000)
+  event.preventDefault()
+  if ($(event.target).text() === 'X' || $(event.target).text() === 'O') {
+    ui.isTaken()
+    return true
+  } else if ($(event.target).text('')) {
+    $(event.target).text(store.startPlayer).addClass(store.startPlayer)
+    store.cells[event.target.id] = store.startPlayer
+    api.updateGame(event.target.id, store.startPlayer, checkForWinner())
+      .then(ui.updateGameSuccess)
+      .catch(ui.updateGameFailure)
   }
-  // Rotate between players AND update game
-  player = !player
-
-  // Check to see if game is over
-  if (gameOver === true) {
-    $('#game-over').show().text('Game Over!')
-    $('#board-spaces').css('pointer-events', 'none')
-  }
-
-  // Check to make sure there isnt a draw
-  // First, count total moves made so far
-  moves++
-  // Next, check if total moves equal 9 (full board) AND there is no winner
-  if (moves === 9 && checkWinner() === false) {
-    $('#game-over').show().text('Game Over!')
-    $('#game-alert').show().text('It\'s a Draw!')
-    $('#board-spaces').css('pointer-events', 'none')
-    $('#player-move').hide()
-    $('#game-over-view').show()
-  }
-
-  // Update game
-  updateGame(space.id, spaceValue, gameOver)
 }
 
-// UPDATE GAME BOARD
-const updateGame = function (index, player, over) {
+const showTotalGames = function (event) {
   event.preventDefault()
-  api.updateGame(index, player, over)
-    .then(response => {
-      ui.updateGameSuccess(response, index, player)
-    })
-    .catch(ui.updateGameFailure)
+  api.showGames()
+    .then(ui.showAllGamesSuccess)
+    .catch(ui.showAllGamesFailure)
 }
 
 module.exports = {
-  addHandlers,
+  createGame,
+  checkForWinner,
+  checkForDraw,
   playGame,
-  checkWinner
+  showTotalGames,
+  addHandlers
 }

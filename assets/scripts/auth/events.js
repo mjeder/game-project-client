@@ -7,8 +7,6 @@ const addHandlers = function () {
   $('#sign-in').on('submit', onSignIn) // SIGN IN
   $('#change-password-button').on('click', showChangePassword) // SHOW CHANGE PASSWORD FORM
   $('#change-password').on('submit', onChangePassword) // CHANGE PASSWORD
-  $('#cancel-password-button').on('click')
-
   $('.sign-out-button').on('click', onSignOut) // SIGN OUT
 }
 

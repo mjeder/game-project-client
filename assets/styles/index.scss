@@ -64,16 +64,22 @@ body {
   margin: 50px;
 }
 
-#game-alert, #player-move, #all-games {
+#game-message {
   margin: 30px;
   font-size: 20px;
-  color: grey;
+  color: $blue-primary-color;
 }
 
-#game-over {
+#all-games {
   margin: 30px;
   font-size: 30px;
   color: $blue-primary-color;
+}
+
+#game-error {
+  margin: 30px;
+  font-size: 15px;
+  color: red;
 }
 
 h3, h5 {

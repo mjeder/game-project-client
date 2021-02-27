@@ -74,7 +74,6 @@ or phone.
 
 ### Unsolved Problems
 Still need to:
-- Input a `play again` function after a game is complete
 - When signing out, clear everything so another user can log in without
 refeshing the page
 

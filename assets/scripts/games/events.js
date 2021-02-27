@@ -5,9 +5,12 @@ const ui = require('./ui')
 const store = require('../store')
 
 const addHandlers = function () {
-  $('#play-game').on('click', createGame) // OPEN NEW GAME BOARD
-  $('#board-spaces').on('click', playGame) // PLAY GAME!
-  $('#view-games').on('click', showTotalGames) // SHOW TOTAL GAMES!
+  // Click play-game button to create game which opens a new game board in ui
+  $('.play-game').on('click', createGame)
+  // Click on spaces in game board to play game
+  $('#board-spaces').on('click', playGame)
+  // Click view-games button to show total games played
+  $('#view-games').on('click', showTotalGames)
 }
 
 // creating a new game and playing again
@@ -16,8 +19,8 @@ const createGame = function () {
     store.startPlayer = 'X'
     store.cells = ['', '', '', '', '', '', '', '', '']
     const space = $('.space')
-    space.html(space.html().replace('X', ''))
-    space.html(space.html().replace('0', ''))
+    space.html(space.html().replace('X', '')).removeClass(store.startPlayer)
+    space.html(space.html().replace('0', '')).removeClass(store.startPlayer)
     api.createGame()
       .then(ui.playAgainSuccess)
       .catch(ui.playAgainFailure)
@@ -25,8 +28,8 @@ const createGame = function () {
     store.startPlayer = 'X'
     store.cells = ['', '', '', '', '', '', '', '', '']
     const space = $('.space')
-    space.html(space.html().replace('X', ''))
-    space.html(space.html().replace('0', ''))
+    space.html(space.html().replace('X', '')).removeClass(store.startPlayer)
+    space.html(space.html().replace('0', '')).removeClass(store.startPlayer)
     api.createGame()
       .then(ui.createGameSuccess)
       .catch(ui.createGameFailure)
@@ -38,14 +41,14 @@ const createGame = function () {
 // 2. check if next space has the same value as first space (if not, return false)
 // 3. check if next space has the same value as the first and second spaces (if not, return false)
 const checkForWinner = function () {
-  if ((store.cells[0] !== '' && store.cells[0] === store.cells[1] && store.cells[1] === store.cells[2]) ||
-  (store.cells[3] !== '' && store.cells[3] === store.cells[4] && store.cells[4] === store.cells[5]) ||
-  (store.cells[6] !== '' && store.cells[6] === store.cells[7] && store.cells[7] === store.cells[8]) ||
-  (store.cells[0] !== '' && store.cells[0] === store.cells[3] && store.cells[3] === store.cells[6]) ||
-  (store.cells[1] !== '' && store.cells[1] === store.cells[4] && store.cells[4] === store.cells[7]) ||
-  (store.cells[2] !== '' && store.cells[2] === store.cells[5] && store.cells[5] === store.cells[8]) ||
-  (store.cells[0] !== '' && store.cells[0] === store.cells[4] && store.cells[4] === store.cells[8]) ||
-  (store.cells[2] !== '' && store.cells[2] === store.cells[4] && store.cells[6])) {
+  if ((store.cells[0] === 'X' && store.cells[1] === 'X' && store.cells[2] === 'X') || (store.cells[0] === 'O' && store.cells[1] === 'O' && store.cells[2] === 'O') ||
+  (store.cells[3] === 'X' && store.cells[4] === 'X' && store.cells[5] === 'X') || (store.cells[3] === 'O' && store.cells[4] === 'O' && store.cells[5] === 'O') ||
+  (store.cells[6] === 'X' && store.cells[7] === 'X' && store.cells[8] === 'X') || (store.cells[6] === 'O' && store.cells[7] === 'O' && store.cells[8] === 'O') ||
+  (store.cells[0] === 'X' && store.cells[3] === 'X' && store.cells[6] === 'X') || (store.cells[0] === 'O' && store.cells[3] === 'O' && store.cells[6] === 'O') ||
+  (store.cells[0] === 'X' && store.cells[4] === 'X' && store.cells[8] === 'X') || (store.cells[0] === 'O' && store.cells[4] === 'O' && store.cells[8] === 'O') ||
+  (store.cells[1] === 'X' && store.cells[4] === 'X' && store.cells[7] === 'X') || (store.cells[1] === 'O' && store.cells[4] === 'O' && store.cells[7] === 'O') ||
+  (store.cells[2] === 'X' && store.cells[5] === 'X' && store.cells[8] === 'X') || (store.cells[2] === 'O' && store.cells[5] === 'O' && store.cells[8] === 'O') ||
+  (store.cells[2] === 'X' && store.cells[4] === 'X' && store.cells[6] === 'X') || (store.cells[2] === 'O' && store.cells[4] === 'O' && store.cells[6] === 'O')) {
     ui.winnerGameOver()
     return true
   } else if (checkForDraw()) {
@@ -84,11 +87,12 @@ const playGame = function (event) {
   }
 }
 
+// show total games played for user
 const showTotalGames = function (event) {
   event.preventDefault()
   api.showGames()
-    .then(ui.showAllGamesSuccess)
-    .catch(ui.showAllGamesFailure)
+    .then(ui.showTotalGamesSuccess)
+    .catch(ui.showTotalGamesFailure)
 }
 
 module.exports = {

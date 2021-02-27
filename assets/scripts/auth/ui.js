@@ -13,7 +13,7 @@ const signUpFailure = function (response) {
   $('#sign-up-alert').text('Hmm.. something went wrong. Please, try again.')
   setTimeout(() => {
     $('#sign-up-alert').text('')
-  }, 4000)
+  }, 3000)
 }
 
 const signInSuccess = function (response) {
@@ -28,7 +28,7 @@ const signInFailure = function (response) {
   $('#sign-in-alert').text('Hmm.. something went wrong. Please, try again.')
   setTimeout(() => {
     $('#sign-in-alert').text('')
-  }, 4000)
+  }, 3000)
 }
 
 const changePasswordSuccess = function (response) {
@@ -48,29 +48,28 @@ const changePasswordFailure = function (response) {
   }, 2000)
 }
 
-const signOutSuccess = function () {
-  store.user = null
-  store.game = null
+const signOutSuccess = function (response) {
   store.over = true
   $('form').trigger('reset')
   $('#play-game-view').hide()
-  $('#user-welcome-view').hide()
   $('#game-over-view').hide()
+  $('#user-welcome-view').hide()
+  $('#change-password-view').hide()
   $('#user-forms-view').show()
-  $('#player-move').text('')
-  $('#game-over').text('')
-  $('#game-alert').text('')
-  $('#sign-out-alert').text('Successfully signed out!')
+  $('#sign-out-success').text('Successfully signed out!')
+  $('#all-games').text('')
+  $('#game-message').text('')
+  $('#game-error').text('')
   setTimeout(() => {
-    $('#sign-out-alert').text('')
+    $('#sign-out-success').text('')
   }, 3000)
 }
 
-const signOutFailure = function () {
+const signOutFailure = function (response) {
   $('form').trigger('reset')
-  $('#sign-out-alert').text('Hmm.. something went wrong. Please, try again.')
+  $('.sign-out-fail').text('Hmm.. something went wrong. Please, try again.')
   setTimeout(() => {
-    $('#sign-out-alert').text('')
+    $('.sign-out-fail').text('')
   }, 3000)
 }
 

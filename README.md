@@ -74,14 +74,11 @@ or phone.
 
 ### Unsolved Problems
 Still need to:
-- Block a user from selecting a space that is already occupied
-- Input a `play again` function after a game is completed
-- Input a `see all games` function to see total games user has played
+- Input a `play again` function after a game is complete
 - When signing out, clear everything so another user can log in without
 refeshing the page
 
 Would like to eventually:
-- Add a theme to the game
 - Add AI so a user can play against the computer at different skill levels
 
 ##### Wireframe:

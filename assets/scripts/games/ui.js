@@ -6,6 +6,7 @@ const createGameSuccess = function (response) {
   store.game = response.game
   $('#user-welcome-view').hide()
   $('#change-password-view').hide()
+  $('#game-over-view').hide()
   $('#play-game-view').show()
   $('#game-message').html('Player ' + store.startPlayer + ' is currently up! Select any open space!')
 }

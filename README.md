@@ -2,12 +2,12 @@
 This is my first project at General Assembly and the goal was to create a Tic
 Tac Toe web application that is hosted live on GH-Pages. The main objectives
 were to:
-- Separate HTML, CSS, and JavaScript files in your application
-- Build an application to a spec that someone else gives you
-- Use your programming skills to solve the game logic for a game
-- Code an interactive game that allows a user to play tic tac toe against themself
-- Communicate with a back-end (which we'll provide for you) to store the state of your game.
-- Craft a README.md file that explains your app to the world
+- [x] Separate HTML, CSS, and JavaScript files in your application
+- [x] Build an application to a spec that someone else gives you
+- [x] Use your programming skills to solve the game logic for a game
+- [x] Code an interactive game that allows a user to play tic tac toe against themself
+- [x] Communicate with a back-end (which we'll provide for you) to store the state of your game.
+- [x] Craft a README.md file that explains your app to the world
 
 ### Important Links
 [API](https://git.generalassemb.ly/ga-wdi-boston/game-project-api)
@@ -22,28 +22,28 @@ a solid idea of how I wanted to sketch out my HTML and JS files.
 Once I built out my foundatation I ran through the the following checklist:
 
 **Application**
-- User must be able to sign up
-- User must be able to sign in
-- Signed in user must be able to change password
-- Signed in user must be able to sign out
-- Signed in user user must be able to start a tic tac toe game
-- When playing game, user must start as X and then rotate between X and O
-- When playing game, user must only select available spaces on the board
-- When playing game, user must be notified when win, loss or tie occurs
-- Once a game is over, user must not be able to add to that board
-- Once a game is over, user must be able to play again
-- Signed in user must be able to view number of games played
+- [x] User must be able to sign up
+- [x] User must be able to sign in
+- [x] Signed in user must be able to change password
+- [x] Signed in user must be able to sign out
+- [x] Signed in user user must be able to start a tic tac toe game
+- [x] When playing game, user must start as X and then rotate between X and O
+- [x] When playing game, user must only select available spaces on the board
+- [x] When playing game, user must be notified when win, loss or tie occurs
+- [x] Once a game is over, user must not be able to add to that board
+- [x] Once a game is over, user must be able to play again
+- [x] Signed in user must be able to view number of games played
 
 **API**
-- Sign up POST /sign-up
-- Sign in POST /sign-in
-- Change password PATCH /change-password
-- Sign out DELETE /sign-out
-- New game POST /games
-- Update game PATCH /games/:id
-- View number of games played GET /games
-- Give feedback to the user after each action's success or failure.
-- All forms must clear after submit success
+- [x] Sign up POST /sign-up
+- [x] Sign in POST /sign-in
+- [x] Change password PATCH /change-password
+- [x] Sign out DELETE /sign-out
+- [x] New game POST /games
+- [x] Update game PATCH /games/:id
+- [x] View number of games played GET /games
+- [x] Give feedback to the user after each action's success or failure.
+- [x] All forms must clear after submit success
 
 
 ### User Stories
@@ -73,12 +73,10 @@ or phone.
 - Ajax
 
 ### Unsolved Problems
-Still need to:
-- When signing out, clear everything so another user can log in without
-refeshing the page
+- [x] All requirements met
 
 Would like to eventually:
-- Add AI so a user can play against the computer at different skill levels
+- [ ] Add AI so a user can play against the computer at different skill levels
 
 ##### Wireframe:
 [Wireframe Link](https://wireframepro.mockflow.com/view/tictactoe-wireframe-eder#/page/56232057d2ca4ded9e253877b5304c5d)

@@ -3,11 +3,16 @@ const ui = require('./ui')
 const getFormFields = require('../../../lib/get-form-fields')
 
 const addHandlers = function () {
-  $('#sign-up').on('submit', onSignUp) // SIGN UP
-  $('#sign-in').on('submit', onSignIn) // SIGN IN
-  $('#change-password-button').on('click', showChangePassword) // SHOW CHANGE PASSWORD FORM
-  $('#change-password').on('submit', onChangePassword) // CHANGE PASSWORD
-  $('.sign-out-button').on('click', onSignOut) // SIGN OUT
+  // Sign Up forms submitted, trigger Sign Up function
+  $('#sign-up').on('submit', onSignUp)
+  // Sign In forms submitted, trigger Sign In function
+  $('#sign-in').on('submit', onSignIn)
+  // Change Password button clicked, open Change Password view
+  $('#change-password-button').on('click', showChangePassword)
+  // Change Password form submitted, trigger Change Password function
+  $('#change-password').on('submit', onChangePassword)
+  // Sign Out button clicked, trigger Sign Out function
+  $('.sign-out-button').on('click', onSignOut)
 }
 
 const onSignUp = function (event) {

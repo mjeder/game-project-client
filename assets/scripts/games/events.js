@@ -74,7 +74,6 @@ const checkForDraw = function () {
 // make sure the selected space is unoccupied
 // if unoccupied, insert X or O and update game.
 const playGame = function (event) {
-  event.preventDefault()
   if ($(event.target).text() === 'X' || $(event.target).text() === 'O') {
     ui.isTaken()
     return true

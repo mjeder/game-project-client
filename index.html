@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Tic Tac Toe</title>
+      <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+      <!-- Do not add `link` tags-->
+      <link rel='shortcut icon' type='image/x-icon' href='favicon.ico'>
+
+      <!-- Do not add `script` tags-->
+      <script src='public/vendor.js' type='text/javascript' charset='utf-8' defer></script>
+      <script src='public/application.js' type='text/javascript' charset='utf-8' defer></script>
+    </head>
+    <body>
+      <section id='welcome'>
+        <h1 id='title'>Tic Tac Toe!</h1>
+      </section>
+
+      <section id='user-forms-view'>
+        <div class='containter'>
+          <div class='col'>
+            <form class='form-group' id='sign-up'>
+              <fieldset>
+                <input class='col-6 mb-2 credentials' name='credentials[email]' type='email' placeholder='Email' required>
+                <input class='col-6 mb-2 credentials' name='credentials[password]' type='password' placeholder='Password' required>
+                <input class='col-6 mb-2 credentials' name='credentials[password_confirmation]' type='password' placeholder='Password Confirmation' required>
+                <button type='submit' class='col-6 mb-2 btn btn-primary btn-lg'>Sign Up</button>
+                <p id='sign-up-alert'></p>
+              </fieldset>
+            </form>
+          </div>
+          <div class='col'>
+            <form class='form-group' id='sign-in'>
+              <fieldset>
+                <input class='col-6 mb-2 credentials' name='credentials[email]' type='email' placeholder='Email' required>
+                <input class='col-6 mb-2 credentials' name='credentials[password]' type='password' placeholder='Password' required>
+                <button type='submit' class='col-6 mb-2 btn btn-secondary btn-lg'>Sign In</button>
+                <p id='sign-in-alert'></p>
+                <p id='sign-out-success'></p>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section id='user-welcome-view'>
+        <h3>Successfully signed in!</h3>
+        <h5>Choose an option below...</h5>
+        <div class='containter'>
+          <div class='col'>
+            <form class='form-group'>
+              <button type='button' class='btn btn-primary btn-lg mb-2 play-game'>Play Game</button>
+            </form>
+            <p id='new-game-alert'></p>
+          </div>
+          <div class='col'>
+            <form class='form-group'>
+              <button id='view-games' type='button' class='btn btn-secondary btn-md'>Total Games Played</button>
+            </form>
+          </div>
+          <div id='all-games'></div>
+          <div class='col'>
+            <form class='form-group'>
+              <button id='change-password-button' type='button' class='btn btn-secondary btn-md'>Change Password</button>
+            </form>
+            <p id='change-password-alert'></p>
+          </div>
+          <div class='col'>
+            <form class='form-group sign-out-button'>
+              <button type='button' class='btn btn-secondary btn-md'>Sign Out</button>
+            </form>
+          <div class='sign-out-fail'></div>
+          </div>
+        </div>
+      </section>
+
+      <section id='change-password-view'>
+        <div class='col'>
+          <form class='form-group' id='change-password'>
+            <fieldset>
+              <input class='col-6 mb-2 credentials' name='passwords[old]' type='password' placeholder='Old Password' required>
+              <input class='col-6 mb-2 credentials' name='passwords[new]' type='password' placeholder='New Password' required>
+              <button type='submit' class='col-6 btn btn-primary btn-lg'>Change Password</button>
+            </fieldset>
+          </form>
+        </div>
+      </section>
+
+      <section id='play-game-view'>
+        <div id='game-board'>
+          <div class='container justify-content-center' id='board-spaces'>
+            <div class='space' id='0'></div>
+            <div class='space border-l-r' id='1'></div>
+            <div class='space' id='2'></div>
+            <div class='space border-t-b' id='3'></div>
+            <div class='space border-a' id='4'></div>
+            <div class='space border-t-b' id='5'></div>
+            <div class='space' id='6'></div>
+            <div class='space border-l-r' id='7'></div>
+            <div class='space' id='8'></div>
+          </div>
+          <div id='game-message'></div>
+          <div id='game-error'></div>
+        </div>
+      </section>
+
+      <section id='game-over-view'>
+        <div class='col'>
+          <form class='form-group'>
+            <button type='button' class='btn btn-primary btn-lg mb-2 play-game'>Play Again!</button>
+          </form>
+        </div>
+        <div class='col'>
+          <form class='form-group sign-out-button'>
+            <button type='button' class='btn btn-secondary btn-md'>Sign Out</button>
+          </form>
+        </div>
+        <div class='sign-out-fail'></div>
+      </section>
+    </body>
+</html>

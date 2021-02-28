@@ -70,7 +70,7 @@ or phone.
 - HTML/CSS
 - Bootstrap
 - Javascript
-- Ajax
+- Ajaxgit
 
 ### Unsolved Problems
 - [x] All requirements met

@@ -2,19 +2,24 @@
 
 const store = require('./../store')
 
+// IF Create Game is successful: create and store game data, hide unnecessary views,
+// show game board, allow clicks in empty spaces, show message that player X is up.
 const createGameSuccess = function (response) {
   store.game = response.game
   $('#user-welcome-view').hide()
   $('#change-password-view').hide()
   $('#game-over-view').hide()
   $('#play-game-view').show()
+  $('#board-spaces').css('pointer-events', '')
   $('#game-message').html('Player ' + store.startPlayer + ' is currently up! Select any open space!')
 }
 
+// IF Create Game fails (it wont): show message
 const createGameFailure = function () {
   $('#game-error').html('Something went wrong... please try again!')
 }
 
+// IF selected space is occupied: dont allow a user click and show message, hide message after 2 sec.
 const isTaken = function () {
   $('#game-error').html('Uh oh! Looks like that space was already taken... please select any open space!')
   setTimeout(() => {
@@ -22,6 +27,8 @@ const isTaken = function () {
   }, 2000)
 }
 
+// IF Update Game board is successful: first check to make sure the game isnt over,
+// if it is then itll move to functions below. If it isnt, then rotate players
 const updateGameSuccess = function () {
   if ($('#game-message').html() === ('It\'s a tie!')) {
     return true
@@ -37,10 +44,13 @@ const updateGameSuccess = function () {
   }
 }
 
+// IF Update Game fails: show message
 const updateGameFailure = function () {
   $('#game-error').text('Something went wrong... please try again!')
 }
 
+// IF a winning combo is detected in events.js then do the following: update stored game data to over,
+// show message of who won, dont allow any clicks, show game over view.
 const winnerGameOver = function () {
   store.over = true
   store.game.over = true
@@ -50,6 +60,8 @@ const winnerGameOver = function () {
   $('#game-over-view').show()
 }
 
+// IF a draw combo is detected in events.js then do the following: update stored game data to over,
+// show message of draw, dont allow any clicks, show game over view.
 const drawGameOver = function () {
   store.over = true
   store.game.over = true
@@ -59,22 +71,14 @@ const drawGameOver = function () {
   $('#game-over-view').show()
 }
 
-const playAgainSuccess = function (response) {
-  store.game = response.game
-  $('#game-message').html('Player ' + store.startPlayer + ', is currently up! Select any open space!')
-  $('#board-spaces').css('pointer-events', '')
-  $('#board-spaces').show()
-}
-
-const playAgainFailure = function () {
-  $('#game-error').text('Something went wrong... please try again!')
-}
-
+// IF Show Total Games is successful: get the length of the array of game objects,
+// show message with total game number attached on the end.
 const showTotalGamesSuccess = function (responseData) {
   const games = responseData.games.length
   $('#all-games').html('Total Games Played: ' + games)
 }
 
+// IF Show Total Games fails: show message
 const showTotalGamesFailure = function () {
   $('#game-error').html('Something went wrong... please try again!')
 }
@@ -87,8 +91,6 @@ module.exports = {
   updateGameFailure,
   winnerGameOver,
   drawGameOver,
-  playAgainSuccess,
-  playAgainFailure,
   showTotalGamesSuccess,
   showTotalGamesFailure
 }

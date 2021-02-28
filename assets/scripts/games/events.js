@@ -13,30 +13,20 @@ const addHandlers = function () {
   $('#view-games').on('click', showTotalGames)
 }
 
-// creating a new game and playing again
+// After play game or play again are clicked, create a new game.
 const createGame = function () {
-  if (store.over === true) {
-    store.startPlayer = 'X'
-    store.cells = ['', '', '', '', '', '', '', '', '']
-    const space = $('.space')
-    space.html(space.html().replace('X', '')).removeClass(store.startPlayer)
-    space.html(space.html().replace('0', '')).removeClass(store.startPlayer)
-    api.createGame()
-      .then(ui.playAgainSuccess)
-      .catch(ui.playAgainFailure)
-  } else {
-    store.startPlayer = 'X'
-    store.cells = ['', '', '', '', '', '', '', '', '']
-    const space = $('.space')
-    space.html(space.html().replace('X', '')).removeClass(store.startPlayer)
-    space.html(space.html().replace('0', '')).removeClass(store.startPlayer)
-    api.createGame()
-      .then(ui.createGameSuccess)
-      .catch(ui.createGameFailure)
-  }
+  store.startPlayer = 'X'
+  store.cells = ['', '', '', '', '', '', '', '', '']
+  store.over = false
+  const space = $('.space')
+  space.html('').removeClass('X')
+  space.html('').removeClass('O')
+  api.createGame()
+    .then(ui.createGameSuccess)
+    .catch(ui.createGameFailure)
 }
 
-// check for a winner
+// Check for a winner
 // 1. make sure space has an X or O (if empty return false)
 // 2. check if next space has the same value as first space (if not, return false)
 // 3. check if next space has the same value as the first and second spaces (if not, return false)
@@ -57,7 +47,7 @@ const checkForWinner = function () {
   return false
 }
 
-// check for a draw
+// Check for a draw
 const checkForDraw = function () {
   if ((store.cells[0] === 'X' || store.cells[0] === 'O') && (store.cells[1] === 'X' || store.cells[1] === 'O') &&
   (store.cells[2] === 'X' || store.cells[2] === 'O') && (store.cells[3] === 'X' || store.cells[3] === 'O') &&
@@ -70,9 +60,9 @@ const checkForDraw = function () {
   return false
 }
 
-// play the game
-// make sure the selected space is unoccupied
-// if unoccupied, insert X or O and update game.
+// Play the game
+// Make sure the selected space is unoccupied
+// If unoccupied, insert X or O and update game.
 const playGame = function (event) {
   event.preventDefault()
   if ($(event.target).text() === 'X' || $(event.target).text() === 'O') {
@@ -87,7 +77,7 @@ const playGame = function (event) {
   }
 }
 
-// show total games played for user
+// Show total games played for user
 const showTotalGames = function (event) {
   event.preventDefault()
   api.showGames()

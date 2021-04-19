@@ -1,4 +1,4 @@
-## Matt's Game of Tic Tac Toe
+## Tic Tac Toe | General Assembly: Front-End Project
 This is my first project at General Assembly and the goal was to create a Tic
 Tac Toe web application that is hosted live on GH-Pages. The main objectives
 were to:
